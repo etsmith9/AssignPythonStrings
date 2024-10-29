@@ -1,65 +1,88 @@
-#task1
+#task 1
 
+reviews = [
+        "This product is really good. I'm impressed with its quality.",
+        "The performance of this product is excellent. Highly recommended!",
+        "I had a bad experience with this product. It didn't meet my expectations.",
+        "Poor quality product. Wouldn't recommend it to anyone.",
+        "The product was average. Nothing extraordinary about it."
+    ]
 
-def addition(a, b):
-    return a + b
+def replace_all(text, replacements):
+    for replacement in replacements:
+        text = text.replace(replacement, replacement.upper())
+    return text
 
-result = addition(10, 3)
-print(result)
+def find_keyword():
+    keywords = ['good', 'excellent', 'bad', 'poor', 'average']
+    new_reviews = []
 
-def subtraction(a, b):
-    return a - b
+    for sentence in reviews:
+        new_sentence = replace_all(sentence.lower(), keywords)
+        new_reviews.append(new_sentence)
 
-result = subtraction(10, 3)
-print(result)
+    return new_reviews
 
-def multiplication(a, b):
-    return a * b
+updated_reviews = find_keyword()
+for review in updated_reviews:
+    print(review)
 
-result = multiplication(10, 3)
-print(result)
+#task 2
 
-def division(a, b):
-    if b == 0:
-        return "You cannot divide by zero!"
-    return a / b
+reviews = [
+        "This product is really good. I'm impressed with its quality.",
+        "The performance of this product is excellent. Highly recommended!",
+        "I had a bad experience with this product. It didn't meet my expectations.",
+        "Poor quality product. Wouldn't recommend it to anyone.",
+        "The product was average. Nothing extraordinary about it."
+    ]
 
-result = division(10, 3)
-print(result)
+positive_words = ["good", "excellent", "great", "awesome", "fantastic", "superb", "amazing"]
+negative_words = ["bad", "poor", "terrible", "horrible", "awful", "disappointing", "subpar"]
 
- #task2
+def count():
+    positive_count = 0
+    negative_count = 0
 
-def calculation():
-    while True:
-        print("What type of calculation would you like to do? [A]ddition, [S]ubtraction, [M]ultiplication, or [D]ivision?")
-        action = input("Enter choice: [A] [S] [M] [D]").upper()
+    for review in reviews:
+        review_lower = review.lower()
 
-        if action == 'A':
-            number_x = int(input("Enter a number, please : "))
-            number_y = int(input("Enter another number, please: "))
-            totaladd = (number_x + number_y)
-            print(f"Your total is {totaladd}")
-        elif action == 'S':
-            number_x = int(input("Enter a number, please : "))
-            number_y = int(input("Enter another number, please: "))
-            totalsub = number_x - number_y
-            print(f"Your total is {totalsub}")
-        elif action == 'M':
-            number_x = int(input("Enter a number, please : "))
-            number_y = int(input("Enter another number, please: "))
-            totalmult = number_x * number_y
-            print(f"Your total is {totalmult}")
-        elif action == 'D':
-            number_x = int(input("Enter a number, please : "))
-            number_y = int(input("Enter another number, please: "))
-            if number_y != 0:
-                totaldiv = number_x / number_y
-                print(f"Your total is {totaldiv}")
-            else:
-                print("You cannot divide by zero, please try again.")
+        for word in positive_words:
+            positive_count += review_lower.count(word)
 
-        else:
-            print("Invalid input, goodbye.")
-            break
+        for word in negative_words:
+            negative_count += review_lower.count(word)
 
-calculation()
+    print(f"the total amount of positive words listed is: {positive_count}")
+    print(f"the total amount of negative words listed is: {negative_count}")
+
+count()
+
+#task3 
+
+reviews = [
+    "This product is really good. I'm impressed with its quality.",
+    "The performance of this product is excellent. Highly recommended!",
+    "I had a bad experience with this product. It didn't meet my expectations.",
+    "Poor quality product. Wouldn't recommend it to anyone.",
+    "The product was average. Nothing extraordinary about it."
+]
+
+def new_review(reviews):
+    for review in reviews:
+        
+        if len(review) <= 30:
+            print(review)
+            continue
+
+        summary = review[:30]
+
+        if summary[-1] != ' ':
+            last_space_index = summary.rfind(' ')
+            if last_space_index != -1:
+                summary = summary[:last_space_index]
+
+        summary += "..."
+        print(summary)  
+
+new_review(reviews)

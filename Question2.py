@@ -1,30 +1,31 @@
-shopping_list = ['Bread', 'Milk', 'Sugar', 'Coffee']
+#task1
 
-def add_item(item):
-    shopping_list.append(item)
+#Task 1: Input Length Validator Write a script that asks for and 
+# checks the length of the user's first name and last name. 
+# Both should be at least 2 characters long. If not, print an error message.
 
-def rem_item(item):
-    if item in shopping_list:
-        shopping_list.remove(item)
-    else:
-        print("This item is not on the list!")
+def user_data(first_name, last_name):
+    for first in first_name:
+        if len(first_name) < 2:
+            print("Invalid input, must include at least two characters in first name.")
+            return False
+        if len(last_name) < 2:
+            print("Invalid input, must include at least two characters in last name.")
+            return False
+        return True
 
 while True:
-    action=input("Would you like to [V]iew your list, [A]dd an item, [R]emove an item, or [Q]uit").upper()
-    if action == 'V':
-        print(f"Your shopping list is as follows: {shopping_list}")
-    elif action == 'A':
-        item_to_add = input("Enter your new item here:  ")
-        add_item(item_to_add)
-    elif action == 'R':
-        item_to_remove = input('Enter the item you would like to remove here: ')
-        rem_item(item_to_remove)
-    elif action == 'Q':
-        print("Goodbye!")
+    user_input = input("Please enter your first and last name to see if they are valid: (ie. John Smith)  ")
+    names = user_input.split()
+
+    if len(names) != 2:
+        print("Please enter both first and last name.")
+        continue
+    
+    first_name, last_name = names
+    if user_data(first_name, last_name):
+        print(f"Valid names entered! Welcome: {user_input}! ")
+
+    continue_input = input("Would you like to check another user name? (yes/no) ").lower()
+    if continue_input != 'yes':
         break
-    else:
-        print("Invalid input, please try again.")
-
-
-
-
